@@ -1,0 +1,132 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block page_title %}
+    Edit Page 
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">ON / OFF</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'edit_login_type_save' %}">
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                        <div class="card-body">
+                            
+                            <div class="form-group">
+                                <label >Login Page </label><br/>
+                                {% if log_type.login_type == True %}
+                                <label class="text-success">Active</label>
+                                {% else %}
+                                <label class="text-danger">Deactive</label>
+                                {% endif %}
+                                <select class="form-control" name="login_type">
+                                    
+                                        <option value=1 >Active</option>
+                                        <option value=0 >Deactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="form-group">
+                                <label >Student Result </label><br/>
+                                {% if log_type.result_type == True %}
+                                <label class="text-success">Active</label>
+                                {% else %}
+                                <label class="text-danger">Deactive</label>
+                                {% endif %}
+                                <select class="form-control" name="result_type">
+                                    
+                                        <option value=1 >Active</option>
+                                        <option value=0 >Deactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="form-group">
+                                <label >Payment System </label><br/>
+                                {% if log_type.activate_type == True %}
+                                <label class="text-success">Active</label>
+                                {% else %}
+                                <label class="text-danger">Deactive</label>
+                                {% endif %}
+                                <select class="form-control" name="activate_type">
+                                    
+                                        <option value=1 >Active</option>
+                                        <option value=0 >Deactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    <div class="card-body">    
+                        <div class="form-group">
+                            <label >Insert Result </label><br/>
+                            {% if log_type.insert_type == True %}
+                            <label class="text-success">Active</label>
+                            {% else %}
+                            <label class="text-danger">Deactive</label>
+                            {% endif %}
+                            <select class="form-control" name="insert_type">
+                                
+                                    <option value=1 >Active</option>
+                                    <option value=0 >Deactive</option>
+                            </select>
+                        </div>
+                    </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                        
+                        <button type="submit" class="btn btn-primary">Update The Page</button>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
